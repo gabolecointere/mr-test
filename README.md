@@ -51,6 +51,6 @@ En la ruta `/index` se muestra una serie de tablas con informacion sobre los pos
 1) Realize los cambios que considere necesarios tanto en el controlador de dicha ruta como en la vista respectiva para reducir la cantidad de queries y mejorar el desempeño en dicha ruta tanto como sea posible. En la herramienta laravel debugbar podra identificar # queries, # modelos, tiempo de carga y uso de memoria. 
 2) Documente como parte del contenido del PR las mejoras realizadas, justifique su decision e incluya una comparativa de los datos de desempeño mostrados en la herramienta laravel debugbar antes y despues de aplicar dichas mejoras. 
 
-Si tiene alguna duda, escriba al correo `gabriel@manyrequest.com`
+Si tiene alguna duda, escriba al correo `gabriel@manyrequests.com`
 
 
