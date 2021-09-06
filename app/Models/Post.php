@@ -30,8 +30,13 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function post_attachments()
+    public function post_attachments(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(PostAttachment::class);
+    }
+
+    public function attachments(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    {
+        return $this->morphMany('App\Attachment', 'attachments','attachable_type','attachable_id');
     }
 }
