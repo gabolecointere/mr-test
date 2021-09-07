@@ -9,11 +9,12 @@ class UserController extends Controller
 {
     public function index(){
         $users = User::with(["posts" => function($query){
-            return $query->select(['id', 'user_id','title']);
+            $query->withCount('post_attachments');
+            $query->withCount('comments');
         },"posts.comments" => function($query){
-            return $query->select(['id','post_id']);
+            $query->withCount('comment_attachments');
         }])->get();
-
+        //dd($users[0]->posts[0]);
         return view(
             'index',
             compact('users')
