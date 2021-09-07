@@ -1,3 +1,4 @@
+
 @foreach ($users as $user)
 
     <h2>{{ $user->name }} posts</h2>
