@@ -32,8 +32,7 @@ class Attachment extends Model
 
     protected $table    = "attachments";
     protected $fillable = [
-        'name',
-        'path'
+        'url'
     ];
 
     public function attachable(): \Illuminate\Database\Eloquent\Relations\MorphTo
