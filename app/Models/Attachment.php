@@ -14,4 +14,9 @@ class Attachment extends Model
         'attachmentable_id',
         'url',
     ];
+
+    public function commentable()
+    {
+        return $this->morphTo();
+    }
 }

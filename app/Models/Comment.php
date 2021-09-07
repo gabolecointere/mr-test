@@ -26,6 +26,6 @@ class Comment extends Model
 
     public function comment_attachments()
     {
-        return $this->hasMany(CommentAttachment::class);
+        return $this->morphMany(Attachment::class, 'attachmentable');
     }
 }
