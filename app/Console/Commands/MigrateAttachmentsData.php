@@ -38,5 +38,17 @@ class MigrateAttachmentsData extends Command
     public function handle()
     {
         $this->info('Migrating Attachments Data');
+
+        $this->processPostAttachmentData();
+    }
+
+    protected function processPostAttachmentData()
+    {
+        $postAttachments = $this->getPostAttachmentData();
+    }
+
+    protected function getPostAttachmentData()
+    {
+        
     }
 }
