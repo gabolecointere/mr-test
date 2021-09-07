@@ -18,4 +18,9 @@ class PostAttachment extends Model
         'post_id',
         'url',
     ];
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 }
