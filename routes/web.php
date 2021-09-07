@@ -18,7 +18,21 @@ Route::get('/', function () {
 });
 
 Route::get('index', function () {
+    $users = \App\Models\User::query()
+        ->with([
+            'posts' => function ($query) {
+                $query->withCount('post_attachments');
+                $query->withCount('comments');
+            },
+            'posts.comments' => function ($query) {
+                $query->withCount('comment_attachments');
+            },
+            'posts.post_attachments',
+            'posts.comments.comment_attachments',
+        ])
+        ->get();
+
     return view('index', [
-        'users' => \App\Models\User::all()
+        'users' => $users
     ]);
 });
