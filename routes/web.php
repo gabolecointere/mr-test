@@ -27,8 +27,6 @@ Route::get('index', function () {
             'posts.comments' => function ($query) {
                 $query->withCount('attachments');
             },
-            'posts.attachments',
-            'posts.comments.attachments',
         ])
         ->get();
 
