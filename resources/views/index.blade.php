@@ -26,7 +26,7 @@
                         {{ $post->title }}
                     </td>
                     <td>
-                        {{ $post->post_attachments_count }}
+                        {{ $post->attachments_count }}
                     </td>
                     <td>
                         {{ $post->comments_count }}
@@ -34,7 +34,7 @@
                     <td>
                         {{
                             $post->comments->reduce(function ($carry, $comment) {
-                                return $carry + $comment->comment_attachments_count;
+                                return $carry + $comment->attachments_count;
                             })
                         }}
                     </td>

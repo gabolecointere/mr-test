@@ -21,14 +21,14 @@ Route::get('index', function () {
     $users = \App\Models\User::query()
         ->with([
             'posts' => function ($query) {
-                $query->withCount('post_attachments');
+                $query->withCount('attachments');
                 $query->withCount('comments');
             },
             'posts.comments' => function ($query) {
-                $query->withCount('comment_attachments');
+                $query->withCount('attachments');
             },
-            'posts.post_attachments',
-            'posts.comments.comment_attachments',
+            'posts.attachments',
+            'posts.comments.attachments',
         ])
         ->get();
 
