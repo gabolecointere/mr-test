@@ -14,8 +14,8 @@
                 <th>
                     Comments
                 </th>
-                <th> Comment Attachments
-
+                <th>
+                    Comment Attachments
                 </th>
             </tr>
         </thead>
@@ -32,11 +32,7 @@
                         {{ $post->comments_count }}
                     </td>
                     <td>
-                        {{
-                            $post->comments->reduce(function ($carry, $comment) {
-                                return $carry + $comment->attachments_count;
-                            })
-                        }}
+                        {{ $post->comments->sum('attachments_count') }}
                     </td>
                 </tr>
             @endforeach
