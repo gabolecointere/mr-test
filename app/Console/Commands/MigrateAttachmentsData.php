@@ -72,6 +72,8 @@ class MigrateAttachmentsData extends Command
                 Attachment::create($item);
             });
 
+        $this->info('Attachment data migrated succesfully.');
+
         return 0;
     }
 }
