@@ -54,24 +54,23 @@ class MigrateAttachmentsData extends Command
     {
         $this->info('Migrate Attachments Data...');
 
-        $this->warn('Migrating post attachment');
+        $this->warn('Migrating post attachments');
         $this->processAttachmentData('posts');
-        $this->info('Post attachment migrated');
+        $this->info('Post attachments migrated');
 
-        $this->warn('Migrating comment attachment');
+        $this->warn('Migrating comment attachments');
         $this->processAttachmentData('comments');
-        $this->info('Comment attachment migrated');
+        $this->info('Comment attachments migrated');
 
         $this->info('Data Migrated!');
     }
 
     protected function processAttachmentData(string $type)
     {
-        if ($type == 'posts')
-            $attachments = $this->getPostAttachmentData();
-        
-        if ($type == 'comments')
-            $attachments = $this->getCommentAttachmentData();
+        $attachments = array();
+
+        if ($type == 'posts') $attachments = $this->getPostAttachmentData();
+        if ($type == 'comments') $attachments = $this->getCommentAttachmentData();
         
         foreach ($attachments as $value)
         {
