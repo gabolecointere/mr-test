@@ -6,6 +6,8 @@ use App\Repositories\Application\PostAttachmentRepository;
 use App\Repositories\Application\CommentAttachmentRepository;
 use App\Repositories\Application\AttachmentRepository;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class MigrateAttachmentsData extends Command
 {
@@ -50,16 +52,42 @@ class MigrateAttachmentsData extends Command
      */
     public function handle()
     {
-        $this->info('Migrating Attachments Data');
+        $this->info('Migrate Attachments Data...');
 
-        $this->processPostAttachmentData();
+        $this->warn('Migrating post attachment');
+        $this->processAttachmentData('posts');
+        $this->info('Post attachment migrated');
+
+        $this->warn('Migrating comment attachment');
+        $this->processAttachmentData('comments');
+        $this->info('Comment attachment migrated');
+
+        $this->info('Data Migrated!');
     }
 
-    protected function processPostAttachmentData()
+    protected function processAttachmentData(string $type)
     {
-        $postAttachments = $this->getPostAttachmentData();
-        $commentAttachments = $this->getCommentAttachmentData();
-        $attachments = $this->getAttachmentData();
+        if ($type == 'posts')
+            $attachments = $this->getPostAttachmentData();
+        
+        if ($type == 'comments')
+            $attachments = $this->getCommentAttachmentData();
+        
+        foreach ($attachments as $value)
+        {
+            $this->repAttchment->create(
+                $this->resolveData($type, $value)
+            );
+        }
+    }
+
+    protected function resolveData(string $type, Model $value)
+    {
+        return new Request([
+            'attachmentable_type' => $type,
+            'attachmentable_id' => $value->id,
+            'url' => $value->url
+        ]);
     }
 
     protected function getPostAttachmentData()
