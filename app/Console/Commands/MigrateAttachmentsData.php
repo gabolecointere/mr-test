@@ -84,7 +84,7 @@ class MigrateAttachmentsData extends Command
     {
         return new Request([
             'attachmentable_type' => $type,
-            'attachmentable_id' => $value->id,
+            'attachmentable_id' => $type == 'posts' ? $value->post_id : $value->comment_id,
             'url' => $value->url
         ]);
     }
