@@ -39,6 +39,12 @@ class UserRepository extends Repository {
 
     public function getUsersWithPosts()
     {
-        return $this->with('posts')->get();
+        return $this->with(['posts' => function ($query) {
+            $query->withCount(['post_attachments']);
+        },
+        'posts.comments' => function ($query) {
+            $query->withCount(['comment_attachments']);
+        }])
+        ->get();
     }
 }

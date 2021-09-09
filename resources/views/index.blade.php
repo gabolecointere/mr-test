@@ -26,10 +26,10 @@
                         {{ $post->title }}
                     </td>
                     <td>
-                        {{ $post->loadCount('post_attachments')->post_attachments_count }}
+                        {{ $post->post_attachments_count }}
                     </td>
                     <td>
-                        {{ $post->loadCount('comments')->comments_count }}
+                        {{ $post->comments_attachments_count }}
                     </td>
                     <td>
                         {{ $post->sumCommentsAttachmentCount() }}
