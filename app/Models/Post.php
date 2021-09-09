@@ -39,10 +39,8 @@ class Post extends Model
 
     public function sumCommentsAttachmentCount()
     {
-        return Comment::where('post_id', $this->attributes['id'])
-            ->sum(DB::raw("(select count(*) from attachments 
-                where attachmentable_type = 'comments' 
-                and attachmentable_id = comments.id)
-            "));
+        return $this->comments->reduce(function ($carry, $comment) {
+               return $carry + $comment->comment_attachments_count;
+            }); 
     }
 }
