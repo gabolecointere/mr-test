@@ -29,7 +29,7 @@
                         {{ $post->post_attachments_count }}
                     </td>
                     <td>
-                        {{ $post->comments_attachments_count }}
+                        {{ $post->comments_count }}
                     </td>
                     <td>
                         {{ $post->sumCommentsAttachmentCount() }}
