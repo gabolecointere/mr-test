@@ -26,14 +26,14 @@
                         {{ $post->title }}
                     </td>
                     <td>
-                        {{ $post->post_attachments()->count() }}
+                        {{ $post->attachments()->count() }}
                     </td>
                     <td>
                         {{ $post->comments()->count() }}
                     </td>
                     <td>
                         {{ $post->comments->reduce(function ($carry, $comment) {
-    return $carry + $comment->comment_attachments()->count();
+    return $carry + $comment->attachments()->count();
 }) }}
                     </td>
                 </tr>

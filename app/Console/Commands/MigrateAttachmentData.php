@@ -35,17 +35,23 @@ class MigrateAttachmentData extends Command
         $posts = Post::all();
         $comments = Comment::all();
         $total_count = $posts->count() + $comments->count();
-        $bar = $this->output->createProgressBar($total_count);
+        $bar = $this->output->createProgressBar();
 
         $bar->start();
         try {
             $posts->each(function (Post $post) use ($bar) {
-                Attachment::create(['attachable_id' => $post->id, 'attachable_type' => Post::class]);
-                $bar->advance();
+                $attachments = $post->post_attachments();
+                $attachments->each(function ($attachment) use ($bar) {
+                    Attachment::create(['attachable_id' => $attachment->post_id, 'attachable_type' => Post::class, 'url' => $attachment->url]);
+                    $bar->advance();
+                });
             });
             $comments->each(function (Comment $comment) use ($bar) {
-                Attachment::create(['attachable_id' => $comment->id, 'attachable_type' => Comment::class]);
-                $bar->advance();
+                $attachments = $comment->comment_attachments();
+                $attachments->each(function ($attachment) use ($bar) {
+                    Attachment::create(['attachable_id' => $attachment->comment_id, 'attachable_type' => Comment::class, 'url' => $attachment->url]);
+                    $bar->advance();
+                });
             });
             Log::info('Data Migration Completed, Total Attachments: ' . Attachment::all(['id'])->count());
             $bar->finish();

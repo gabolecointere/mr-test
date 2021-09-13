@@ -17,8 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('index', function () {
-    return view('index', [
-        'users' => \App\Models\User::all()
-    ]);
-});
+Route::get('index', 'App\Http\Controllers\IndexController@index');

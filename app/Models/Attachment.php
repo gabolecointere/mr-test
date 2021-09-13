@@ -9,7 +9,7 @@ class Attachment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['attachable_id', 'attachable_type'];
+    protected $fillable = ['attachable_id', 'attachable_type', 'url'];
 
     public function attachable()
     {
