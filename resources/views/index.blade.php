@@ -1,6 +1,6 @@
-@foreach ($users as $user)
+@foreach ($users as $key => $user)
 
-    <h2>{{ $user->name }} posts</h2>
+    <h2>{{ $key }} posts</h2>
 
     <table>
         <thead>
@@ -20,21 +20,19 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($user->posts as $post)
+            @foreach ($user as $item)
                 <tr>
                     <td>
-                        {{ $post->title }}
+                        {{ $item->title }}
                     </td>
                     <td>
-                        {{ $post->attachments()->count() }}
+                        {{ $item->posts_attachments_count }}
                     </td>
                     <td>
-                        {{ $post->comments()->count() }}
+                        {{ $item->comments_count }}
                     </td>
                     <td>
-                        {{ $post->comments->reduce(function ($carry, $comment) {
-    return $carry + $comment->attachments()->count();
-}) }}
+                        {{ $item->comment_attachments_count}}
                     </td>
                 </tr>
             @endforeach
