@@ -28,4 +28,14 @@ class Comment extends Model
     {
         return $this->hasMany(CommentAttachment::class);
     }
+
+    /**
+     * Get all of comment attachments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function attachments()
+    {
+        return $this->morphMany(Attachment::class, 'attachable');
+    }
 }

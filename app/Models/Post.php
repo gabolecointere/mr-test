@@ -34,4 +34,14 @@ class Post extends Model
     {
         return $this->hasMany(PostAttachment::class);
     }
+
+    /**
+     * Get all of post attachments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function attachments()
+    {
+        return $this->morphMany(Attachment::class, 'attachable');
+    }
 }
