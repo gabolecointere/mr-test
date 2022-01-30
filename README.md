@@ -42,14 +42,19 @@ Se desea sustituir estos dos modelos (`PostAttachment` y `CommentAttachment`) po
 
 `php artisan migrate_attachments_data`
 
-3) Documente como parte del contenido  del PR los pasos que debe seguir otro desarrollador para incluir los cambios realizados en este ejercicio en su proyecto. 
+3) Escriba pruebas automatizadas para probar y garantizar la funcionalidad del comando de la migracion. 
+
+4) Documente como parte del contenido  del PR los pasos que debe seguir otro desarrollador para incluir los cambios realizados en este ejercicio en su proyecto. 
 
 ## Ejercicio 2
 
 En la ruta `/index` se muestra una serie de tablas con informacion sobre los posts que posee cada usuario. Este proyecto instala la herramienta `barryvdh/laravel-debugbar` con la cual puede observar al visitar dicha ruta, que para cargar la informacion se ejecutan 656 queries y se cargan 555 modelos. 
 
-1) Realize los cambios que considere necesarios tanto en el controlador de dicha ruta como en la vista respectiva para reducir la cantidad de queries y mejorar el desempeño en dicha ruta tanto como sea posible. En la herramienta laravel debugbar podra identificar # queries, # modelos, tiempo de carga y uso de memoria. 
-2) Documente como parte del contenido del PR las mejoras realizadas, justifique su decision e incluya una comparativa de los datos de desempeño mostrados en la herramienta laravel debugbar antes y despues de aplicar dichas mejoras. 
+1) Realize los cambios que considere necesarios tanto en el controlador de dicha ruta como en la vista respectiva para reducir la cantidad de queries y mejorar el desempeño en dicha ruta tanto como sea posible. En la herramienta laravel debugbar podra identificar # queries, # modelos, tiempo de carga y uso de memoria.
+
+2) Escriba pruebas automatizadas antes de realizar los cambios para asegurarse de que el resultado en la ruta `/index` sigue siendo el despues de aplicar los cambios.  
+
+3) Documente como parte del contenido del PR las mejoras realizadas, justifique su decision e incluya una comparativa de los datos de desempeño mostrados en la herramienta laravel debugbar antes y despues de aplicar dichas mejoras. 
 
 Si tiene alguna duda, escriba al correo `gabriel@manyrequests.com`
 
