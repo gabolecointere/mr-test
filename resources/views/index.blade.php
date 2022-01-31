@@ -1,6 +1,6 @@
-@foreach ($data as $user)
+@foreach ($data as $key => $user)
 
-    <h2>{{ $user->name }} posts</h2>
+    <h2>{{ $key }} posts</h2>
 
     <table>
         <thead>
@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($user->postData as $post)
+            @foreach ($user as $post)
                 <tr>
                     <td>
                         {{ $post->title }}
