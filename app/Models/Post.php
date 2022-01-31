@@ -20,6 +20,13 @@ class Post extends Model
         'user_id'
     ];
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    // protected $with = ['comments', 'attachments'];
+
     public function user()
     {
         return $this->belongsTo(User::class);

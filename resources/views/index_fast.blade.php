@@ -1,6 +1,6 @@
 @foreach ($users as $user)
 
-    <h2>{{ $user->name }} posts (view slow but safe)</h2>
+    <h2>{{ $user->name }} posts (view fast fast)</h2>
 
     <table>
         <thead>
@@ -26,14 +26,14 @@
                         {{ $post->title }}
                     </td>
                     <td>
-                        {{ $post->post_attachments()->count() }}
+                        {{ $post->attachments->count() }}
                     </td>
                     <td>
-                        {{ $post->comments()->count() }}
+                        {{ $post->comments->count() }}
                     </td>
                     <td>
                         {{ $post->comments->reduce(function ($carry, $comment) {
-    return $carry + $comment->comment_attachments()->count();
+    return $carry + $comment->attachments->count();
 }) }}
                     </td>
                 </tr>
