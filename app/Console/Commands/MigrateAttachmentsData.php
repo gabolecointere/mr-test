@@ -45,8 +45,15 @@ class MigrateAttachmentsData extends Command
     {
         $this->info('Migrating data');
         $this->info('-----------------');
+        $this->truncateTable();
         $this->migrateAttachmentsFromPost();
         $this->migrateAttachmentsFromComment();
+    }
+
+    public function truncateTable(): bool
+    {
+        Attachment::truncate();
+        return true;
     }
 
     public function migrateAttachmentsFromPost(): bool
