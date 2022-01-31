@@ -44,4 +44,14 @@ class Post extends Model
     {
         return $this->morphMany(Attachment::class, 'attachable');
     }
+
+    /**
+     * Get all of comment attachments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function commentAttachments()
+    {
+        return $this->hasManyThrough(CommentAttachment::class, Comment::class);
+    }
 }
