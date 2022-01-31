@@ -37,8 +37,6 @@ class UserController extends Controller
             }
         }
 
-        \Log::info($res);
-
         return view('index', [
             'data' => $res
         ]);
