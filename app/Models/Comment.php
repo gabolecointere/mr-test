@@ -19,6 +19,13 @@ class Comment extends Model
         'post_id'
     ];
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    // protected $with = ['attachments'];
+
     public function post()
     {
         return $this->belongsTo(Post::class);
@@ -27,5 +34,10 @@ class Comment extends Model
     public function comment_attachments()
     {
         return $this->hasMany(CommentAttachment::class);
+    }
+
+    public function attachments()
+    {
+        return $this->morphMany(Attachment::class, 'attachment');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('index', function () {
-    return view('index', [
-        'users' => \App\Models\User::all()
-    ]);
-});
+Route::get('index', [UserController::class, 'index']);
+Route::get('index-medium', [UserController::class, 'index_medium']);
+Route::get('index-fast', [UserController::class, 'index_fast']);
