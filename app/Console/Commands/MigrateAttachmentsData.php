@@ -98,7 +98,7 @@ class MigrateAttachmentsData extends Command
 
                 $attachment = new Attachment;
                 $attachment->comment_id = $value->comment_id;
-                $attachment->comment_id = NULL;
+                $attachment->post_id = NULL;
                 $attachment->url = $value->url;
                 $attachment->save();
 
