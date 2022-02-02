@@ -16,7 +16,7 @@ class Comment extends Model
      */
     protected $fillable = [
         'body',
-        'post_id'
+        'post_id',
     ];
 
     public function post()
@@ -27,5 +27,15 @@ class Comment extends Model
     public function comment_attachments()
     {
         return $this->hasMany(CommentAttachment::class);
+    }
+
+    /**
+     * Get all of the comment's attachments..
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function attachments()
+    {
+        return $this->morphMany(Attachment::class, 'attachable');
     }
 }

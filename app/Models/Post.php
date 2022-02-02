@@ -17,7 +17,7 @@ class Post extends Model
     protected $fillable = [
         'title',
         'body',
-        'user_id'
+        'user_id',
     ];
 
     public function user()
@@ -33,5 +33,15 @@ class Post extends Model
     public function post_attachments()
     {
         return $this->hasMany(PostAttachment::class);
+    }
+
+    /**
+     * Get all of the post's attachments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function attachments()
+    {
+        return $this->morphMany(Attachment::class, 'attachable');
     }
 }
