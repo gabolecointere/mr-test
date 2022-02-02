@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Attachment extends Model
 {
     use HasFactory;
 
@@ -15,17 +15,8 @@ class Comment extends Model
      * @var string[]
      */
     protected $fillable = [
-        'body',
-        'post_id'
+        'attachable_id',
+        'attachable_type',
+        'url',
     ];
-
-    public function post()
-    {
-        return $this->belongsTo(Post::class);
-    }
-
-    public function comment_attachments()
-    {
-        return $this->morphMany(Attachment::class, 'attachable');
-    }
 }
