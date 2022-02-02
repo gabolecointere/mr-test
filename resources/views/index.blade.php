@@ -5,35 +5,19 @@
     <table>
         <thead>
             <tr>
-                <th>
-                    Title
-                </th>
-                <th>
-                    Attachments
-                </th>
-                <th>
-                    Comments
-                </th>
-                <th> Comment Attachments
-
-                </th>
+                <th>Title</th>
+                <th>Attachments</th>
+                <th>Comments</th>
+                <th>Comment Attachments</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($user->posts as $post)
                 <tr>
-                    <td>
-                        {{ $post->title }}
-                    </td>
-                    <td>
-                        {{ $post->attachments_count }}
-                    </td>
-                    <td>
-                        {{ $post->comments_count }}
-                    </td>
-                    <td>
-                        {{ $post->comment_attachments_count }}
-                    </td>
+                    <td>{{ $post->title }}</td>
+                    <td>{{ $post->attachments_count }}</td>
+                    <td>{{ $post->comments_count }}</td>
+                    <td>{{ $post->comment_attachments_count }}</td>
                 </tr>
             @endforeach
         </tbody>
