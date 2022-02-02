@@ -16,6 +16,8 @@ class IndexViewTest extends TestCase
     {
         Artisan::call('db:seed');
 
+        $this->artisan('migrate_attachments_data')->assertExitCode(0);
+
         $response = $this->get('index');
 
         $response
