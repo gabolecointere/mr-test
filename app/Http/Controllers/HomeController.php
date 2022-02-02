@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 class HomeController extends Controller
 {
     /**
@@ -11,8 +13,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index', [
-            'users' => \App\Models\User::all(),
-        ]);
+        $users = User::with([
+            'posts' => function ($post) {
+                $post->withCount('attachments');
+                $post->withCount('comments');
+                $post->withCount('commentAttachments');
+            },
+        ])->get();
+
+        return view('index', compact('users'));
     }
 }
