@@ -15,8 +15,8 @@ class Attachment extends Model
      * @var string[]
      */
     protected $fillable = [
-        'post_id',
-        'comment_id',
+        'attachable_id',
+        'attachable_type',
         'url',
     ];
 }

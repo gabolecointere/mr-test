@@ -15,12 +15,12 @@ class UserController extends Controller
         ->select(
             'users.name as name',
             'posts.title as title',
-            DB::raw("(SELECT COUNT(*) FROM attachments WHERE attachments.post_id = posts.id) as count_attachments"),
+            DB::raw("(SELECT COUNT(*) FROM attachments WHERE attachments.attachable_id = posts.id AND attachments.attachable_type = 'App\\\\Models\\\\Post') as count_attachments"),
             DB::raw("(SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) as count_comments"),
             DB::raw("(
                 SELECT COUNT(*)
                 FROM attachments
-                LEFT JOIN comments ON comments.id = attachments.comment_id
+                LEFT JOIN comments ON comments.id = attachments.attachable_id AND attachments.attachable_type = 'App\\\\Models\\\\Comment'
                 WHERE comments.post_id = posts.id
                 ) as count_comments_attachments
             ")

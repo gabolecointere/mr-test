@@ -69,8 +69,8 @@ class MigrateAttachmentsData extends Command
             foreach ($postsAttachmentsOldTable as $key => $value) {
 
                 $attachment = new Attachment;
-                $attachment->post_id = $value->post_id;
-                $attachment->comment_id = NULL;
+                $attachment->attachable_type = 'App\Models\Post';
+                $attachment->attachable_id = $value->post_id;
                 $attachment->url = $value->url;
                 $attachment->save();
 
@@ -104,8 +104,8 @@ class MigrateAttachmentsData extends Command
             foreach ($commentsAttachmentsOldTable as $key => $value) {
 
                 $attachment = new Attachment;
-                $attachment->comment_id = $value->comment_id;
-                $attachment->post_id = NULL;
+                $attachment->attachable_type = 'App\Models\Comment';
+                $attachment->attachable_id = $value->comment_id;
                 $attachment->url = $value->url;
                 $attachment->save();
 
