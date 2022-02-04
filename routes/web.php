@@ -19,6 +19,9 @@ Route::get('/', function () {
 
 Route::get('index', function () {
     return view('index', [
-        'users' => \App\Models\User::all()
+        'users' => \App\Models\User::with([
+            'posts.attachments',
+            'posts.comments.attachments',
+        ])->get(['id','name'])
     ]);
 });
