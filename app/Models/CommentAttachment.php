@@ -18,5 +18,10 @@ class CommentAttachment extends Model
         'comment_id',
         'url',
     ];
+
+    public function comment()
+    {
+        return $this->belongsTo(Comment::class);
+    }
 }
 

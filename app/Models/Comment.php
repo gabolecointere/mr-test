@@ -28,4 +28,9 @@ class Comment extends Model
     {
         return $this->hasMany(CommentAttachment::class);
     }
+
+    public function attachments()
+    {
+        return $this->morphMany('App\Models\Attachment', 'attachmentable');
+    }
 }

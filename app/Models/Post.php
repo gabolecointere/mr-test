@@ -34,4 +34,9 @@ class Post extends Model
     {
         return $this->hasMany(PostAttachment::class);
     }
+
+    public function attachments()
+    {
+        return $this->morphMany('App\Models\Attachment', 'attachmentable');
+    }
 }
